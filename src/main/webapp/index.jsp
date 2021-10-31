@@ -5,7 +5,8 @@
   Time: 10:48
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  isELIgnored="false"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en" dir="ltr">
 
 <head>
@@ -53,221 +54,22 @@
 
 <div class="ui container margin-top-50">
     <div class="ui segment">
-        <div class="ui grid">
-            <!-- 书籍导航菜单 -->
-            <div class="three wide column stackable grid border-right">
-                <div class="column margin-bottom-10">
-                    <button class="ui blue button item width-185">
-                        全部书籍（226）
-                    </button>
-                </div>
-                <div class="column margin-bottom-10">
-                    <button class="ui button item width-185">
-                        计算机类（112）
-                    </button>
-                </div>
-                <div class="column margin-bottom-10">
-                    <button class="ui button item width-185">
-                        文学类（100）
-                    </button>
-                </div>
-            </div>
-            <!-- 书籍显示列表 -->
-            <div class="eleven wide column">
-                <div class="ui link cards width-915">
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/java.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Java语言程序设计</div>
-                            <div class="description">
-                                作者：张三
-                            </div>
-                            <div class="description">
-                                ISBN：1101564
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/老人与海.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">老人与海</div>
-                            <div class="description">
-                                作者：海明威
-                            </div>
-                            <div class="description">
-                                ISBN：1104698
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/mysql.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Mysql修炼之道</div>
-                            <div class="description">
-                                作者：李四
-                            </div>
-                            <div class="description">
-                                ISBN：5987451
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 填充内容 -->
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/java.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Java语言程序设计</div>
-                            <div class="description">
-                                作者：张三
-                            </div>
-                            <div class="description">
-                                ISBN：1101564
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/老人与海.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">老人与海</div>
-                            <div class="description">
-                                作者：海明威
-                            </div>
-                            <div class="description">
-                                ISBN：1104698
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/mysql.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Mysql修炼之道</div>
-                            <div class="description">
-                                作者：李四
-                            </div>
-                            <div class="description">
-                                ISBN：5987451
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/java.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Java语言程序设计</div>
-                            <div class="description">
-                                作者：张三
-                            </div>
-                            <div class="description">
-                                ISBN：1101564
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/老人与海.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">老人与海</div>
-                            <div class="description">
-                                作者：海明威
-                            </div>
-                            <div class="description">
-                                ISBN：1104698
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/mysql.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Mysql修炼之道</div>
-                            <div class="description">
-                                作者：李四
-                            </div>
-                            <div class="description">
-                                ISBN：5987451
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/java.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Java语言程序设计</div>
-                            <div class="description">
-                                作者：张三
-                            </div>
-                            <div class="description">
-                                ISBN：1101564
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/老人与海.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">老人与海</div>
-                            <div class="description">
-                                作者：海明威
-                            </div>
-                            <div class="description">
-                                ISBN：1104698
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 一个书籍列表 -->
-                    <div class="card">
-                        <div class="image">
-                            <img src="./statics/images/mysql.png">
-                        </div>
-                        <div class="content">
-                            <div class="header">Mysql修炼之道</div>
-                            <div class="description">
-                                作者：李四
-                            </div>
-                            <div class="description">
-                                ISBN：5987451
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+<%--        &lt;%&ndash; 如果changPage没有值就默认显示list页面&ndash;%&gt;--%>
+        <c:if test="${empty changePage}">
+            <jsp:include page="books/books_list.jsp"></jsp:include>
+        </c:if>
+        <%-- 如果对应的changePage不为空，则请求跳转到对应页面--%>
+        <c:if test="${!empty changePage}">
+            <jsp:include page="${changePage}"></jsp:include>
+        </c:if>
     </div>
 
 </div>
 
 
 <div class="ui segment attached margin-top-50">
-
+    ${booksInfo}
+        ${changePage}
     版权所有归图书馆所有
 </div>
 
