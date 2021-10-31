@@ -12,7 +12,7 @@
     <div class="three wide column stackable grid border-right">
         <div class="column margin-bottom-10">
             <button class="ui blue button item width-185">
-                全部书籍（226）
+                全部书籍(221)
             </button>
         </div>
         <div class="column margin-bottom-10">
@@ -33,7 +33,7 @@
                 <!-- 一个书籍列表 -->
                 <div class="card">
                     <div class="image">
-                        <img src="./statics/images/java.png">
+                        <img src="${books.books_picture}">
                     </div>
                     <div class="content">
                         <div class="header">${books.books_name}</div>
