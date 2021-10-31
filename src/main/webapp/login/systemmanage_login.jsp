@@ -10,24 +10,24 @@
     <!-- 登录身份菜单 -->
     <div class="three wide column stackable grid border-right">
         <div class="column margin-bottom-10">
-            <button class="ui blue button item width-185">
+            <a href="login?actionName=loginIndex" class="ui button item width-185">
                 读者登录
-            </button>
+            </a>
         </div>
         <div class="column margin-bottom-10">
-            <button class="ui button item width-185">
+            <a href="login?actionName=librarymanageLogin" class="ui button item width-185">
                 图书管理员登录
-            </button>
+            </a>
         </div>
         <div class="column margin-bottom-10">
-            <button class="ui button item width-185">
+            <a href="login?actionName=systemmangeLogin" class="ui blue button item width-185">
                 系统管理员登录
-            </button>
+            </a>
         </div>
         <div class="column margin-bottom-10">
-            <button class="ui button item width-185">
+            <a href="login?actionName=register" class="ui button item width-185">
                 读者账号注册
-            </button>
+            </a>
         </div>
     </div>
     <!-- 登录表 -->
