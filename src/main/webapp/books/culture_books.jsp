@@ -29,7 +29,7 @@
     <!-- 书籍显示列表 -->
     <div class="eleven wide column">
         <div class="ui link cards width-915">
-            <c:forEach items="${booksInfo}" var="books">
+            <c:forEach items="${CultureBooks}" var="books">
                 <!-- 一个书籍列表 -->
                 <div class="card">
                     <div class="image">

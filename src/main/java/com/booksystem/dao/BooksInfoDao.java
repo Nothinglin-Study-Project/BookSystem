@@ -14,4 +14,18 @@ public class BooksInfoDao {
 
         return BooksInfo;
     }
+
+    //查找数据库中计算机类型的书籍
+    public static List findComputerBooks(String booksType){
+        //1.定义sql语句
+        String sql = "select * from books_info where books_type = ?";
+        //2.设置参数集合
+        List<Object> params = new ArrayList<Object>();
+        params.add(booksType);
+
+        //调用basedao方法
+        List ComputerBooks = BaseDao.queryRows(sql,params,BooksInfo.class);
+
+        return ComputerBooks;
+    }
 }

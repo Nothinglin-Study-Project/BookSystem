@@ -11,5 +11,6 @@ public class TestUser {
         BooksInfoDao booksInfoDao = new BooksInfoDao();
         List booksInfo =  booksInfoDao.findAll();
         System.out.println(booksInfo);
+        List<BooksInfo> ComputerBooks = BooksInfoDao.findComputerBooks("计算机类");
     }
 }
