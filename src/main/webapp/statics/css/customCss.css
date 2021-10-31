@@ -1,0 +1,81 @@
+.menu-logo {
+  width: 150px;
+}
+
+.login-info {
+  width: 120px !important;
+  top: 15px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+.margin-left-10 {
+  margin-left: 10px;
+}
+.margin-left-20 {
+  margin-left: 20px;
+}
+.margin-top-50 {
+  margin-top: 50px !important;
+}
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+
+.margin-top-120{
+  margin-top: 120px !important;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.background-pic {
+  overflow: hidden;
+  height: 200px;
+}
+
+.background-position {
+  margin-top: -335px;
+}
+
+.border-right {
+  border-right-color: #80808038;
+  border-right-width: 0.5px;
+  border-right-style: solid;
+}
+
+.width-185 {
+  width: 185px;
+}
+
+.width-915 {
+  width: 915px;
+}
+
+.ui.cards>.card {
+  margin: 0.875em .4em !important;
+}
+.ui.cards>.card>.image>img {
+    max-height: 290px;
+}
+
+.background-color-lightgray{
+  background-color: #d3d3d361;
+}
+.border-radius-5{
+  border-radius: 5px;
+}
+button.ui.primary.button.margin-top-10.margin-left-20.margin-bottom-20 {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.margin-15px{
+  padding: 15px;
+}
+.order-picture{
+  width: 120px;
+}

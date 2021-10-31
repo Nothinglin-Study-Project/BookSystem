@@ -7,12 +7,11 @@ import java.util.List;
 
 public class BooksInfoDao {
 
-public List findAll( ){
-    String sql = "select * from books_info";
+    public List findAll() {
+        String sql = "select * from books_info";
+        //3.调用BaseDao的查询方法
+        List BooksInfo = BaseDao.findAll(sql, BooksInfo.class);
 
-    //3.调用BaseDao的查询方法
-    List BooksInfo =  BaseDao.findAll(sql,BooksInfo.class);
-
-    return BooksInfo;
-}
+        return BooksInfo;
+    }
 }

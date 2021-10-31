@@ -9,7 +9,7 @@ public class TestUser {
     @Test
     public void findAll() {
         BooksInfoDao booksInfoDao = new BooksInfoDao();
-        BooksInfo booksInfo = (BooksInfo) booksInfoDao.findAll();
+        List booksInfo =  booksInfoDao.findAll();
         System.out.println(booksInfo);
     }
 }
