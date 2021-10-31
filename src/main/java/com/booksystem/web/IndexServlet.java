@@ -45,6 +45,8 @@ public class IndexServlet extends HttpServlet {
         List<BooksInfo> booksInfo = BooksInfoDao.findAll();
         request.setAttribute("booksInfo", booksInfo);
 
+        request.setAttribute("menu_type","index");
+
         //页面跳转
         //2.请求转发跳转到index
         //设置导航页面为http://localhost:8080/BookSystem_war_exploded/index ---> 指向index.jsp页面

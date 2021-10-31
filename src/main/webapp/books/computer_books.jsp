@@ -11,17 +11,17 @@
     <!-- 书籍导航菜单 -->
     <div class="three wide column stackable grid border-right">
         <div class="column margin-bottom-10">
-            <a href="index?actionName=bookslist" class="ui blue button item width-185">
+            <a href="index?actionName=bookslist" class="ui <c:if test="${menu_type=='index'}">blue</c:if> button item width-185">
                 全部书籍(221)
             </a>
         </div>
         <div class="column margin-bottom-10">
-            <a href="bookstype?actionName=computerType" class="ui button item width-185">
+            <a href="bookstype?actionName=computerType" class="ui <c:if test="${menu_type=='computer'}">blue</c:if> button item width-185">
                 计算机类（112）
             </a>
         </div>
         <div class="column margin-bottom-10">
-            <a href="bookstype?actionName=cultureType" class="ui button item width-185">
+            <a href="bookstype?actionName=cultureType" class="ui <c:if test="${menu_type=='culture'}">blue</c:if> button item width-185">
                 文学类（100）
             </a>
         </div>

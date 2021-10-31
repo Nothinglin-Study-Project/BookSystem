@@ -34,6 +34,7 @@ public class BooksTypeServlet extends HttpServlet {
         request.setAttribute("changePage", "books/culture_books.jsp");
         List<BooksInfo> CultureBooks = BooksInfoDao.findComputerBooks("文学类");
         request.setAttribute("CultureBooks", CultureBooks);
+        request.setAttribute("menu_type","culture");
         //页面跳转
         //2.请求转发跳转到index
         //设置导航页面为http://localhost:8080/BookSystem_war_exploded/index ---> 指向index.jsp页面
@@ -45,6 +46,7 @@ public class BooksTypeServlet extends HttpServlet {
         request.setAttribute("changePage", "books/computer_books.jsp");
         List<BooksInfo> ComputerBooks = BooksInfoDao.findComputerBooks("计算机类");
         request.setAttribute("ComputerBooks", ComputerBooks);
+        request.setAttribute("menu_type","computer");
         //页面跳转
         //2.请求转发跳转到index
         //设置导航页面为http://localhost:8080/BookSystem_war_exploded/index ---> 指向index.jsp页面
