@@ -11,7 +11,7 @@
     <!-- 书籍导航菜单 -->
     <div class="three wide column stackable grid border-right">
         <div class="column margin-bottom-10">
-            <a href="index?actionName=bookslist" class="ui <c:if test="${menu_type=='index'}">blue</c:if> button item width-185">
+            <a href="bookstype?actionName=bookslist" class="ui <c:if test="${menu_type=='index'}">blue</c:if> button item width-185">
                 全部书籍(221)
             </a>
         </div>

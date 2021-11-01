@@ -21,7 +21,7 @@
 <div class="ui segment attached">
     <div class="ui container">
         <div class="ui grid">
-            <div class="column"><a href="index?actionName=bookslist"><img class="menu-logo" src="./statics/images/logo.png" alt="logo"></a></div>
+            <div class="column"><a href="bookstype?actionName=bookslist"><img class="menu-logo" src="./statics/images/logo.png" alt="logo"></a></div>
             <div class="column right floated login-info">
                 <a class="margin-right-10" href="login?actionName=loginIndex">登录</a>
                 <a href="login?actionName=register">注册</a>
@@ -37,7 +37,7 @@
 <!-- 菜单栏部分 -->
 <div class="ui container">
     <div class="ui menu">
-        <div class="item"><a href="index?actionName=bookslist">首页</a></div>
+        <div class="item"><a href="bookstype?actionName=bookslist">首页</a></div>
         <div class="item"><a href="#">我的预约</a></div>
         <div class="item"><a href="#">借书信息</a></div>
         <div class="right menu">
@@ -68,7 +68,7 @@
 
 
 <div class="ui segment attached margin-top-50">
-
+${changePage}
     版权所有归图书馆所有
 </div>
 

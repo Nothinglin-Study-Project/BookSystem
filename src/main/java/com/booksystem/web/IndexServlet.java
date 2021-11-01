@@ -44,7 +44,6 @@ public class IndexServlet extends HttpServlet {
     private void bookslist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<BooksInfo> booksInfo = BooksInfoDao.findAll();
         request.setAttribute("booksInfo", booksInfo);
-
         request.setAttribute("menu_type","index");
 
         //页面跳转

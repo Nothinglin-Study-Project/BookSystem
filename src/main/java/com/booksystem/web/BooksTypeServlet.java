@@ -25,8 +25,22 @@ public class BooksTypeServlet extends HttpServlet {
         }else if ("cultureType".equals(actionName)) {
             cultureType(request, response);
 
+        }else if("bookslist".equals(actionName)){
+            bookslist(request, response);
         }
 
+    }
+
+    private void bookslist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("changePage","books/books_list.jsp");
+        List<BooksInfo> booksInfo = BooksInfoDao.findAll();
+        request.setAttribute("booksInfo", booksInfo);
+        request.setAttribute("menu_type","index");
+
+        //页面跳转
+        //2.请求转发跳转到index
+        //设置导航页面为http://localhost:8080/BookSystem_war_exploded/index ---> 指向index.jsp页面
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     private void cultureType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
