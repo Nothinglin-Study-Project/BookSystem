@@ -42,4 +42,18 @@ public class BooksInfoDao {
 
         return findBookInfo;
     }
+
+    //根据name查询书籍信息
+    public static List SearchBookByName(String booksType){
+        //1.定义sql语句
+        String sql = "select * from books_info where books_name = ?";
+        //2.设置参数集合
+        List<Object> params = new ArrayList<Object>();
+        params.add(booksType);
+
+        //调用basedao方法
+        List SearchBooks = BaseDao.queryRows(sql,params,BooksInfo.class);
+
+        return SearchBooks;
+    }
 }

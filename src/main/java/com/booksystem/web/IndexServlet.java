@@ -27,11 +27,21 @@ public class IndexServlet extends HttpServlet {
             //1.设置首页动态包含的页面值
             request.setAttribute("changePage", "books/computer_books.jsp");
             computerBooks(request, response);
+        } else if ("search".equals(actionName)){
+            SearchBook(request, response);
         }
 
         //图书列表展示
         bookslist(request, response);
 
+    }
+
+    private void SearchBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String SearchValue = request.getParameter("searchValue");
+        List<BooksInfo> SearchBooks = BooksInfoDao.SearchBookByName(SearchValue);
+        request.setAttribute("SearchBooks", SearchBooks);
+        request.setAttribute("changePage", "books/search_books.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     private void computerBooks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

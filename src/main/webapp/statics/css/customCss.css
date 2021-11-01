@@ -83,3 +83,6 @@ input.ui.primary.button.margin-top-10.margin-left-20.margin-bottom-20 {
   margin-left: 10px !important;
   margin-bottom: 10px !important;
 }
+form{
+  margin: 0!important;
+}
