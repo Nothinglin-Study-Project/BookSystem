@@ -4,6 +4,7 @@ package com.booksystem.web;
 import com.booksystem.dao.BaseDao;
 import com.booksystem.po.LibraryManageInfo;
 import com.booksystem.po.ReaderInfo;
+import com.booksystem.po.SystemManageInfo;
 import com.booksystem.service.LoginService;
 import com.booksystem.vo.ResultInfo;
 
@@ -38,12 +39,35 @@ public class LoginServlet extends HttpServlet{
             ReaderLogin(request,response);
         }else if ("bookManegeLogin".equals(actionName)){
             BookManegeLogin(request,response);
+        }else if("systemManegeLogin".equals(actionName)){
+            SystemManegeLogin(request,response);
         }
 
     }
 
+    private void SystemManegeLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取系统管理员登录输入的账号和密码信息
+        String systemManegeName = request.getParameter("systemManageName");
+        String systemManegePassword = request.getParameter("systemManagePassword");
+
+        //调用service层的方法对登录信息进行校验，返回对应的校验结果给resultInfo对象
+        LoginService loginService = new LoginService();
+        ResultInfo<SystemManageInfo> resultInfo = loginService.systemManageLogin(systemManegeName,systemManegePassword);
+
+        //判断用户是否登陆成功
+        if (resultInfo.getCode() == 1){
+            request.setAttribute("changePage","page/systemmanage_page.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }else {
+            //如果登录失败就要向前端返回msg提示
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","login/systemmanage_login.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }
+    }
+
     private void BookManegeLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //获取读者登录输入的账号和密码信息
+        //获取图书管理员登录输入的账号和密码信息
         String bookManegeName = request.getParameter("bookManegeName");
         String bookManegePassword = request.getParameter("bookManegePassword");
 

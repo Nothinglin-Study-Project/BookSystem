@@ -2,6 +2,7 @@ package com.booksystem.dao;
 
 import com.booksystem.po.ReaderInfo;
 import com.booksystem.po.LibraryManageInfo;
+import com.booksystem.po.SystemManageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +32,19 @@ public class LoginDao {
 
         LibraryManageInfo libraryManageInfo = (LibraryManageInfo) BaseDao.queryRow(sql,params,LibraryManageInfo.class);
         return libraryManageInfo;
+    }
+
+    public SystemManageInfo querySystemManageInfoByName(String systemManageName){
+        //1.定义sql语句
+        String sql = "select * from systemmanage_info where systemmanage_name = ?";
+
+        //2.设置参数集合
+        List<Object> params = new ArrayList<Object>();
+        params.add(systemManageName);
+
+        SystemManageInfo systemManageInfo = (SystemManageInfo) BaseDao.queryRow(sql,params,SystemManageInfo.class);
+
+        return systemManageInfo;
+
     }
 }
