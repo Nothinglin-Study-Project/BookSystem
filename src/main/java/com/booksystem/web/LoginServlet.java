@@ -2,6 +2,7 @@ package com.booksystem.web;
 
 
 import com.booksystem.dao.BaseDao;
+import com.booksystem.po.LibraryManageInfo;
 import com.booksystem.po.ReaderInfo;
 import com.booksystem.service.LoginService;
 import com.booksystem.vo.ResultInfo;
@@ -35,6 +36,30 @@ public class LoginServlet extends HttpServlet{
             ConfirmRegister(request,response);
         }else if ("readerLogin".equals(actionName)){
             ReaderLogin(request,response);
+        }else if ("bookManegeLogin".equals(actionName)){
+            BookManegeLogin(request,response);
+        }
+
+    }
+
+    private void BookManegeLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取读者登录输入的账号和密码信息
+        String bookManegeName = request.getParameter("bookManegeName");
+        String bookManegePassword = request.getParameter("bookManegePassword");
+
+        //调用service层的方法对登录信息进行校验，返回对应的校验结果给resultInfo对象
+        LoginService loginService = new LoginService();
+        ResultInfo<LibraryManageInfo> resultInfo = loginService.bookManageLogin(bookManegeName,bookManegePassword);
+
+        //判断用户是否登陆成功
+        if (resultInfo.getCode() == 1){
+            request.setAttribute("changePage","page/librarymanage_page.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }else {
+            //如果登录失败就要向前端返回msg提示
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","login/librarymanage_login.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
         }
 
     }
