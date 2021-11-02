@@ -25,8 +25,27 @@
                                                                               src="./statics/images/logo.png"
                                                                               alt="logo"></a></div>
             <div class="column right floated login-info">
-                <a class="margin-right-10" href="login?actionName=loginIndex">登录</a>
-                <a href="login?actionName=register">注册</a>
+
+                <c:if test="${loginFleid == null}">
+                    <a class="margin-right-10" href="login?actionName=loginIndex">登录</a>
+                    <a href="login?actionName=register">注册</a>
+                </c:if>
+
+                <c:if test="${loginFleid == 'reader'}">
+                    <span>${resultInfo.result.reader_name}</span>&nbsp&nbsp
+                    <a href="#">退出</a>
+                </c:if>
+
+                <c:if test="${loginFleid == 'librarymanage'}">
+                    <span> ${resultInfo.result.librarymanage_name}</span>&nbsp&nbsp
+                    <a href="#">退出</a>
+                </c:if>
+
+                <c:if test="${loginFleid == 'systemmanage'}">
+                    <span> ${resultInfo.result.systemmanage_name}</span> &nbsp&nbsp
+                    <a href="#">退出</a>
+                </c:if>
+
             </div>
         </div>
     </div>
@@ -40,9 +59,26 @@
 <div class="ui container">
     <div class="ui menu">
         <div class="item"><a href="bookstype?actionName=bookslist">首页</a></div>
-        <div class="item"><a href="#">我的预约</a></div>
-        <div class="item"><a href="#">借书信息</a></div>
+        <%--    未登录时的导航菜单    --%>
+        <c:if test="${loginFleid == null}">
 
+        </c:if>
+        <%--读者导航菜单--%>
+        <c:if test="${loginFleid == 'reader'}">
+            <div class="item"><a href="#">我的预约</a></div>
+            <div class="item"><a href="#">借书信息</a></div>
+        </c:if>
+        <%--图书管理员导航菜单管理--%>
+        <c:if test="${loginFleid == 'librarymanage'}">
+            <div class="item"><a href="#">预约管理</a></div>
+            <div class="item"><a href="#">读者管理</a></div>
+        </c:if>
+
+        <%--系统管理员导航菜单--%>
+        <c:if test="${loginFleid == 'systemmanage'}">
+            <div class="item"><a href="#">添加书籍</a></div>
+            <div class="item"><a href="#">图书管理员列表</a></div>
+        </c:if>
 
         <div class="right menu borderless">
             <form action="index" method="post">

@@ -2,6 +2,8 @@ package com.booksystem.web;
 
 
 import com.booksystem.dao.BaseDao;
+import com.booksystem.dao.BooksInfoDao;
+import com.booksystem.po.BooksInfo;
 import com.booksystem.po.LibraryManageInfo;
 import com.booksystem.po.ReaderInfo;
 import com.booksystem.po.SystemManageInfo;
@@ -56,7 +58,11 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
-            request.setAttribute("changePage","page/systemmanage_page.jsp");
+            List<BooksInfo> booksInfo = BooksInfoDao.findAll();
+            request.setAttribute("booksInfo", booksInfo);
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","books/books_list.jsp");
+            request.setAttribute("loginFleid","systemmanage");
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }else {
             //如果登录失败就要向前端返回msg提示
@@ -77,7 +83,11 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
-            request.setAttribute("changePage","page/librarymanage_page.jsp");
+            List<BooksInfo> booksInfo = BooksInfoDao.findAll();
+            request.setAttribute("booksInfo", booksInfo);
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","books/books_list.jsp");
+            request.setAttribute("loginFleid","librarymanage");
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }else {
             //如果登录失败就要向前端返回msg提示
@@ -99,7 +109,11 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
-            request.setAttribute("changePage","page/reader_page.jsp");
+            List<BooksInfo> booksInfo = BooksInfoDao.findAll();
+            request.setAttribute("booksInfo", booksInfo);
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","books/books_list.jsp");
+            request.setAttribute("loginFleid","reader");
             request.getRequestDispatcher("index.jsp").forward(request,response);
         }else {
             //如果登录失败就要向前端返回msg提示
