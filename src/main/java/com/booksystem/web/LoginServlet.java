@@ -2,6 +2,9 @@ package com.booksystem.web;
 
 
 import com.booksystem.dao.BaseDao;
+import com.booksystem.po.ReaderInfo;
+import com.booksystem.service.LoginService;
+import com.booksystem.vo.ResultInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +33,32 @@ public class LoginServlet extends HttpServlet{
             SystemMangeLogin(request,response);
         }else if ("confirmRegister".equals(actionName)){
             ConfirmRegister(request,response);
+        }else if ("readerLogin".equals(actionName)){
+            ReaderLogin(request,response);
         }
+
+    }
+
+    private void ReaderLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取读者登录输入的账号和密码信息
+        String readerName = request.getParameter("readerName");
+        String readerPassword = request.getParameter("readerPassword");
+
+        //调用service层的方法对登录信息进行校验，返回对应的校验结果给resultInfo对象
+        LoginService loginService = new LoginService();
+        ResultInfo<ReaderInfo> resultInfo = loginService.readerLogin(readerName,readerPassword);
+
+        //判断用户是否登陆成功
+        if (resultInfo.getCode() == 1){
+            request.setAttribute("changePage","page/reader_page.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }else {
+            //如果登录失败就要向前端返回msg提示
+            request.setAttribute("resultInfo",resultInfo);
+            request.setAttribute("changePage","login/reader_login.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+        }
+
 
     }
 
