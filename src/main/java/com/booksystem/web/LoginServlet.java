@@ -43,8 +43,22 @@ public class LoginServlet extends HttpServlet{
             BookManegeLogin(request,response);
         }else if("systemManegeLogin".equals(actionName)){
             SystemManegeLogin(request,response);
+        }else if ("readerloginout".equals(actionName)){
+            Loginout(request,response);
+        }else if ("librarymanageloginout".equals(actionName)){
+            Loginout(request,response);
+        }else if ("systemmanageloginout".equals(actionName)){
+            Loginout(request,response);
         }
 
+
+    }
+
+    private void Loginout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1.销毁Session对象
+        request.getSession().invalidate();
+        //跳回首页
+        request.getRequestDispatcher("index").forward(request,response);
     }
 
     private void SystemManegeLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,6 +72,9 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
+            //向session中存一个身份识别的属性值
+            request.getSession().setAttribute("WhoIsYou","systemmanage");
+            request.getSession().setAttribute("MyName",resultInfo);
             List<BooksInfo> booksInfo = BooksInfoDao.findAll();
             request.setAttribute("booksInfo", booksInfo);
             request.setAttribute("resultInfo",resultInfo);
@@ -83,6 +100,9 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
+            //向session中存一个身份识别的属性值
+            request.getSession().setAttribute("WhoIsYou","librarymanage");
+            request.getSession().setAttribute("MyName",resultInfo);
             List<BooksInfo> booksInfo = BooksInfoDao.findAll();
             request.setAttribute("booksInfo", booksInfo);
             request.setAttribute("resultInfo",resultInfo);
@@ -109,6 +129,10 @@ public class LoginServlet extends HttpServlet{
 
         //判断用户是否登陆成功
         if (resultInfo.getCode() == 1){
+            //向session中存一个身份识别的属性值
+            request.getSession().setAttribute("WhoIsYou","reader");
+            request.getSession().setAttribute("MyName",resultInfo);
+            request.getSession().setAttribute("user", resultInfo.getResult());
             List<BooksInfo> booksInfo = BooksInfoDao.findAll();
             request.setAttribute("booksInfo", booksInfo);
             request.setAttribute("resultInfo",resultInfo);
