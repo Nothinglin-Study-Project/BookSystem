@@ -40,7 +40,7 @@
                         <img src="${books.books_picture}">
                     </div>
                     <div class="content">
-                        <div class="header"><a href="detail?actionName=bookdetail&bookname=${books.books_name}">${books.books_name}</a></div>
+                        <div class="header"><a href="detail?actionName=bookdetail&bookisbn=${books.books_isbn}">${books.books_name}</a></div>
                         <div class="description">
                             作者：${books.books_author}
                         </div>

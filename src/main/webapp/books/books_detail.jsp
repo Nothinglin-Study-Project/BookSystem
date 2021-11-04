@@ -31,9 +31,12 @@
             </div>
         </div>
 
-        <a href="reader?actionName=orderBook&orderBookName=${findBookInfo.books_name}&orderReaderName=${MyName.result.reader_name}" class="ui primary button margin-top-10 margin-left-20 margin-bottom-20">
-            预约
-        </a>
+        <c:if test="${WhoIsYou == 'reader' && findBookInfo.books_status=='在馆未借'}">
+            <a href="reader?actionName=orderBook&orderBookName=${findBookInfo.books_name}&orderReaderName=${MyName.result.reader_name}"
+               class="ui primary button margin-top-10 margin-left-20 margin-bottom-20">
+                预约
+            </a>
+        </c:if>
         <a href="bookstype?actionName=bookslist" class="ui  button margin-top-10 margin-left-20 margin-bottom-20">
             返回
         </a>

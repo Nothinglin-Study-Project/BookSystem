@@ -42,7 +42,19 @@ public class BooksInfoDao {
 
         return findBookInfo;
     }
+    //根据书名查询书籍的信息
+    public static BooksInfo findBookByIsbn(String bookName){
+        //1.定义sql语句
+        String sql = "select * from books_info where books_isbn = ?";
+        //2.设置参数集合
+        List<Object> params = new ArrayList<Object>();
+        params.add(bookName);
 
+        //调用basedao方法
+        BooksInfo findBookInfo = (BooksInfo) BaseDao.queryRow(sql,params,BooksInfo.class);
+
+        return findBookInfo;
+    }
     //根据name查询书籍信息
     public static List SearchBookByName(String booksType){
         //1.定义sql语句

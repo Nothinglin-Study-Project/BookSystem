@@ -73,7 +73,7 @@ public class ReaderServlet extends HttpServlet {
         BooksInfo queryBookInfo = readerOrderService.CheckBookInfo(orderBookName);
 
         //定义向订单表中插入预定信息的sql语句
-        String sql = "insert into order_info(bookname , author , picture , backtime , orderstatus , readername , readerid) values(?,?,?,?,?,?,?)";
+        String sql = "insert into order_info(bookname , author , picture , backtime , orderstatus , readername , readerid , bookisbn ,readerstatus) values(?,?,?,?,?,?,?,?,?)";
 
         //定义一个参数数组
         List<Object> params = new ArrayList<>();
@@ -84,6 +84,8 @@ public class ReaderServlet extends HttpServlet {
         params.add("未审核");
         params.add(queryreaderInfo.getReader_name());
         params.add(queryreaderInfo.getReader_id());
+        params.add(queryBookInfo.getBooks_isbn());
+        params.add(queryreaderInfo.getReader_status());
 
         //调用basedao数据库更新方法插入书籍
         BaseDao.executeUpdate(sql,params);

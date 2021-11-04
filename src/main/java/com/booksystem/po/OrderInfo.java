@@ -8,6 +8,24 @@ public class OrderInfo {
     private String orderstatus;
     private String readername;
     private String readerid;
+    private String bookisbn;
+    private String readerstatus;
+
+    public String getReaderstatus() {
+        return readerstatus;
+    }
+
+    public void setReaderstatus(String readerstatus) {
+        this.readerstatus = readerstatus;
+    }
+
+    public String getBookisbn() {
+        return bookisbn;
+    }
+
+    public void setBookisbn(String bookisbn) {
+        this.bookisbn = bookisbn;
+    }
 
     public String getBookname() {
         return bookname;
