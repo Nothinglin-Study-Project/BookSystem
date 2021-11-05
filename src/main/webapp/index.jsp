@@ -66,7 +66,7 @@
         <%--读者导航菜单--%>
         <c:if test="${WhoIsYou == 'reader'}">
             <div class="item"><a href="reader?actionName=myorder">我的预约</a></div>
-            <div class="item"><a href="#">借书信息</a></div>
+            <div class="item"><a href="reader?actionName=checkmyborrow&readername=${MyName.result.reader_name}">借书信息</a></div>
         </c:if>
         <%--图书管理员导航菜单管理--%>
         <c:if test="${WhoIsYou == 'librarymanage'}">

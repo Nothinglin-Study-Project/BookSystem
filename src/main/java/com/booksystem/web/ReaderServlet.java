@@ -4,6 +4,7 @@ package com.booksystem.web;
 import com.booksystem.dao.BaseDao;
 import com.booksystem.dao.BooksInfoDao;
 import com.booksystem.po.BooksInfo;
+import com.booksystem.po.BorrowBookInfo;
 import com.booksystem.po.OrderInfo;
 import com.booksystem.po.ReaderInfo;
 import com.booksystem.service.ReaderOrderService;
@@ -32,7 +33,29 @@ public class ReaderServlet extends HttpServlet {
             ReaderOrderBook(request, response);
         }else if ("deleteOrder".equals(actionName)){
             DeleteOrder(request, response);
+        }else if ("checkmyborrow".equals(actionName)){
+            CheckMyBorrow(request, response);
         }
+
+    }
+
+    private void CheckMyBorrow(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String readerName = request.getParameter("readername");
+        //定义查询借阅表中对应读者的借书信息的sql语句
+        String sql = "select * from borrow_info where readername = ?";
+        //定义数组封装参数
+        List<Object> params = new ArrayList<>();
+        params.add(readerName);
+
+        List<BorrowBookInfo> readerborrowBookInfos = BaseDao.queryRows(sql, params,BorrowBookInfo.class);
+
+        request.getSession().removeAttribute("readerborrowBookInfos");
+        request.getSession().setAttribute("readerborrowBookInfos",readerborrowBookInfos);
+
+
+        request.setAttribute("changePage","reader/myborrow_list.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 
