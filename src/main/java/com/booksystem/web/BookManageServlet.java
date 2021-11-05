@@ -4,6 +4,7 @@ package com.booksystem.web;
 import com.booksystem.dao.BaseDao;
 import com.booksystem.dao.BooksInfoDao;
 import com.booksystem.po.BooksInfo;
+import com.booksystem.po.BorrowBookInfo;
 import com.booksystem.po.OrderInfo;
 import com.booksystem.po.ReaderInfo;
 import com.booksystem.service.ReaderOrderService;
@@ -35,7 +36,65 @@ public class BookManageServlet extends HttpServlet {
             BorrowBookPage(request,response);
         }else if ("borrowBook".equals(actionName)){
             BorrowBook(request,response);
+        }else if ("checkborrow".equals(actionName)){
+            CheckBorrow(request,response);
+        }else if ("giveback".equals(actionName)){
+            GiveBack(request,response);
         }
+
+    }
+
+    private void GiveBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String borrowBookIsbn = request.getParameter("borrowBookIsbn");
+        //定义删除借出表中的信息的sql语句
+        String sql = "delete from borrow_info where bookisbn = ?";
+        List<Object> params = new ArrayList<>();
+        params.add(borrowBookIsbn);
+
+        //调用basedao数据库向借书表中删除要还书的信息
+        BaseDao.executeUpdate(sql,params);
+
+        //定义sql语句更新书籍列表中的书籍状态
+        String sql2 = "update books_info set books_status = ? where books_isbn = ?";
+        List<Object> params2 = new ArrayList<>();
+        params2.add("在馆未借");
+        params2.add(borrowBookIsbn);
+        //调用basedao数据库更新书籍库中的书籍状态
+        BaseDao.executeUpdate(sql2,params2);
+
+
+        //刷新借书表的内容
+        //定义sql语句查询借书表中的全部内容
+        String sql1 = "select * from borrow_info";
+        //调用basedao中查询表全部内容的方法
+        List<BorrowBookInfo> borrowbookinfo = BaseDao.findAll(sql1,BorrowBookInfo.class);
+
+        request.getSession().removeAttribute("borrowbookinfo");
+        request.getSession().setAttribute("borrowbookinfo",borrowbookinfo);
+
+        request.setAttribute("changePage","bookmanage/borrow_list.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        request.getSession().removeAttribute("borrowbookinfo");
+        request.getSession().setAttribute("borrowbookinfo",borrowbookinfo);
+
+        request.setAttribute("changePage","bookmanage/borrow_list.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+
+    private void CheckBorrow(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //定义sql语句查询借书表中的全部内容
+        String sql = "select * from borrow_info";
+        //调用basedao中查询表全部内容的方法
+        List<BorrowBookInfo> borrowbookinfo = BaseDao.findAll(sql,BorrowBookInfo.class);
+
+        request.getSession().removeAttribute("borrowbookinfo");
+        request.getSession().setAttribute("borrowbookinfo",borrowbookinfo);
+
+        request.setAttribute("changePage","bookmanage/borrow_list.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
 
     }
 
@@ -48,18 +107,20 @@ public class BookManageServlet extends HttpServlet {
         String readerName = request.getParameter("readerName");
         String backTime = request.getParameter("backTime");
         String readerId = request.getParameter("readerId");
+        String readerNumber = request.getParameter("readerNumber");
 
         //定义向订单表中插入预定信息的sql语句
-        String sql = "insert into borrow_info(readername , bookname , picture , bookstatus , readerid , backtime , bookisbn) values(?,?,?,?,?,?,?)";
+        String sql = "insert into borrow_info(readername , bookname , picture , bookstatus , readerid , backtime , bookisbn ,readerNumber) values(?,?,?,?,?,?,?,?)";
 
         List<Object> params = new ArrayList<>();
         params.add(readerName);
         params.add(BookName);
         params.add(BookPicture);
-        params.add(BookStatus);
+        params.add("未归还");
         params.add(readerId);
         params.add(backTime);
         params.add(BookIsbn);
+        params.add(readerNumber);
 
         //调用basedao数据库向借书表中插入借书信息
         BaseDao.executeUpdate(sql,params);
@@ -74,7 +135,16 @@ public class BookManageServlet extends HttpServlet {
         //调用basedao数据库更新方法插入书籍
         BaseDao.executeUpdate(sql1,params1);
 
-        request.setAttribute("changePage","books/books_list.jsp");
+
+        //刷新
+        //定义sql语句查询借书表中的全部内容
+        String sql2 = "select * from borrow_info";
+        //调用basedao中查询表全部内容的方法
+        List<BorrowBookInfo> borrowbookinfo = BaseDao.findAll(sql2,BorrowBookInfo.class);
+
+        request.getSession().removeAttribute("borrowbookinfo");
+        request.getSession().setAttribute("borrowbookinfo",borrowbookinfo);
+        request.setAttribute("changePage","bookmanage/borrow_list.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
 

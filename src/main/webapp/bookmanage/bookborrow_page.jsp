@@ -29,8 +29,15 @@
         </div>
 
         <br>
+        <!-- 读者电话号码 -->
+        <div class="ui right labeled input margin-top-10  margin-left-10">
+            <div class="ui label">读者电话号码：</div>
+            <input type="text" name="readerNumber">
+        </div>
+
+        <br>
         <button class="ui primary button margin-top-10 margin-left-20 margin-bottom-20" type="submit">确认</button>
-            ${findBookInfo.books_name}
+
     </form>
 </div>
 </div>

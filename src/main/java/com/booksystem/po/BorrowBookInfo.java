@@ -8,6 +8,15 @@ public class BorrowBookInfo {
     private String readerid;
     private String backtime;
     private String bookisbn;
+    private String readernumber;
+
+    public String getReadernumber() {
+        return readernumber;
+    }
+
+    public void setReadernumber(String readernumber) {
+        this.readernumber = readernumber;
+    }
 
     public String getReadername() {
         return readername;
