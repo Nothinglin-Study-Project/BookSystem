@@ -23,7 +23,6 @@ public class BookManageServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //判断用户行为并执行指定函数
         String actionName = request.getParameter("actionName");
         if ("manageorder".equals(actionName)) {
@@ -32,8 +31,62 @@ public class BookManageServlet extends HttpServlet {
             AgreeOrder(request, response);
         }else if ("disagreeorder".equals(actionName)){
             DeleteOrder(request, response);
+        }else if("borrowbookpage".equals(actionName)){
+            BorrowBookPage(request,response);
+        }else if ("borrowBook".equals(actionName)){
+            BorrowBook(request,response);
         }
 
+    }
+
+    //处理借书事务
+    private void BorrowBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String BookName = request.getParameter("infoBookname");
+        String BookIsbn = request.getParameter("infoBookisbn");
+        String BookPicture = request.getParameter("infoBookpicture");
+        String BookStatus = request.getParameter("infoBookstatus");
+        String readerName = request.getParameter("readerName");
+        String backTime = request.getParameter("backTime");
+        String readerId = request.getParameter("readerId");
+
+        //定义向订单表中插入预定信息的sql语句
+        String sql = "insert into borrow_info(readername , bookname , picture , bookstatus , readerid , backtime , bookisbn) values(?,?,?,?,?,?,?)";
+
+        List<Object> params = new ArrayList<>();
+        params.add(readerName);
+        params.add(BookName);
+        params.add(BookPicture);
+        params.add(BookStatus);
+        params.add(readerId);
+        params.add(backTime);
+        params.add(BookIsbn);
+
+        //调用basedao数据库向借书表中插入借书信息
+        BaseDao.executeUpdate(sql,params);
+
+        //更新书籍表中的书籍状态
+        //定义sql语句
+        String sql1 = "update books_info set books_status = ? where books_isbn = ?";
+        List<Object> params1 = new ArrayList<>();
+        params1.add("不在馆，已借出");
+        params1.add(BookIsbn);
+
+        //调用basedao数据库更新方法插入书籍
+        BaseDao.executeUpdate(sql1,params1);
+
+        request.setAttribute("changePage","books/books_list.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+
+
+    }
+
+    //跳转到借出页面
+    private void BorrowBookPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //跳转回预约管理中
+        request.setAttribute("changePage","bookmanage/bookborrow_page.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     private void DeleteOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

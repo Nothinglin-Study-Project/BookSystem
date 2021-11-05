@@ -29,7 +29,9 @@ public class BookDetailServlet extends HttpServlet {
     private void ToBookDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String bookisbn= request.getParameter("bookisbn");
         BooksInfo findBookInfo = BooksInfoDao.findBookByIsbn(bookisbn);
-        request.setAttribute("findBookInfo",findBookInfo);
+        //1.销毁Session对象
+        request.getSession().removeAttribute("findBookInfo");
+        request.getSession().setAttribute("findBookInfo",findBookInfo);
         //1.设置首页动态包含的页面值
         request.setAttribute("changePage","books/books_detail.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
