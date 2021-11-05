@@ -72,7 +72,6 @@
         <c:if test="${WhoIsYou == 'librarymanage'}">
             <div class="item"><a href="bookmanage?actionName=checkborrow">借书情况</a></div>
             <div class="item"><a href="bookmanage?actionName=manageorder">预约管理</a></div>
-            <div class="item"><a href="#">读者管理</a></div>
         </c:if>
 
         <%--系统管理员导航菜单--%>

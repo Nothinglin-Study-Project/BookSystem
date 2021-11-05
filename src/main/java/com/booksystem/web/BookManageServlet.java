@@ -40,7 +40,48 @@ public class BookManageServlet extends HttpServlet {
             CheckBorrow(request,response);
         }else if ("giveback".equals(actionName)){
             GiveBack(request,response);
+        }else if("cancelorder".equals(actionName)){
+            CancelOrder(request,response);
         }
+
+    }
+
+    private void CancelOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cancelBookIsbn = request.getParameter("cancelBookIsbn");
+        //删除要取消的目标数据
+        //定义sql语句
+        String sql = "delete from order_info where bookisbn = ?";
+        List<Object> params = new ArrayList<>();
+        params.add(cancelBookIsbn);
+        //调用basedao数据库删除预约表中不符合预约条件的信息
+        BaseDao.executeUpdate(sql,params);
+
+        //更新书籍表中的书籍状态
+        //定义sql语句
+        String sql1 = "update books_info set books_status = ? where books_isbn = ?";
+        List<Object> params1 = new ArrayList<>();
+        params1.add("在馆未借");
+        params1.add(cancelBookIsbn);
+
+
+        //调用basedao数据库更新方法插入书籍
+        BaseDao.executeUpdate(sql1,params1);
+
+        //刷新预约表中的信息
+        //定义sql语句
+        String sql2 = "select * from order_info";
+
+        //调用basedao方法查询表中的全部内容
+        List<BooksInfo> OrderInfoList = BaseDao.findAll(sql2, OrderInfo.class);
+
+        //1.销毁Session对象
+        request.getSession().removeAttribute("OrderInfoList");
+        //向前端传递Orderinfo获得的内容
+        request.getSession().setAttribute("OrderInfoList",OrderInfoList);
+
+        //跳转回预约管理中
+        request.setAttribute("changePage","bookmanage/order_manage.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 

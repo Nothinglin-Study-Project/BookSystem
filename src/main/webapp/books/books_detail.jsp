@@ -44,6 +44,12 @@
                 还书
             </a>
         </c:if>
+        <c:if test="${WhoIsYou == 'librarymanage' && findBookInfo.books_status=='在馆预约中(暂不可借)'}">
+            <a href="bookmanage?actionName=cancelorder&cancelBookIsbn=${findBookInfo.books_isbn}"
+               class="ui primary button margin-top-10 margin-left-20 margin-bottom-20">
+                取消预约
+            </a>
+        </c:if>
 
         <c:if test="${WhoIsYou == 'librarymanage' && findBookInfo.books_status=='在馆未借'}">
             <a href="bookmanage?actionName=borrowbookpage&infoBookisbn=${findBookInfo.books_isbn}&infoBookname=${findBookInfo.books_name}&infoBookpicture=${findBookInfo.books_picture}&infoBookstatus=${findBookInfo.books_status}"
