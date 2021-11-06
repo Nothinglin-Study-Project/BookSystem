@@ -4,7 +4,7 @@ package com.booksystem.po;
  * 1.先写po，数据对应数据库的表元素
  */
 public class BooksInfo {
-    private int books_isbn;  //书籍的ID
+    private String books_isbn;  //书籍的ID
     private String books_name; //书籍的名称
     private String books_author; //书籍的作者
     private String books_intro; //书籍简介
@@ -13,11 +13,11 @@ public class BooksInfo {
     private String books_type;//书籍的类型
     private String books_picture; //书籍的封面
 
-    public int getBooks_isbn() {
+    public String getBooks_isbn() {
         return books_isbn;
     }
 
-    public void setBooks_isbn(int books_isbn) {
+    public void setBooks_isbn(String books_isbn) {
         this.books_isbn = books_isbn;
     }
 

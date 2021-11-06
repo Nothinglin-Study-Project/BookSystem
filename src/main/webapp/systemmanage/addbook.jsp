@@ -20,42 +20,60 @@
                </div>
             </div>
          </div>
-         <input id="file_upload" type="file" />
+         <input id="file_upload" type="file" name="file"/>
       </div>
       <!-- 书记详情 -->
       <div class="eleven wide column">
          <div class="ui container background-color-lightgray border-radius-5">
             <div class="margin-15px">
-               <!-- 姓名 -->
+               <!-- ISBN -->
                <div class="ui right labeled input margin-top-10 margin-left-10">
-                  <div class="ui label">书名：</div>
-                  <input type="text" placeholder="请输入您的名字...">
+                  <div class="ui label">ISBN：</div>
+                  <input type="text" placeholder="请输入书籍ISBN..." name="books_isbn">
                </div>
 
                <br>
-               <!-- 身份证号码 -->
+               <!-- 书名 -->
                <div class="ui right labeled input margin-top-10  margin-left-10">
-                  <div class="ui label">读者姓名： </div>
-                  <input type="password" placeholder="请输入您的姓名...">
+                  <div class="ui label">书名： </div>
+                  <input type="text" placeholder="请输入书名..." name="books_name">
                </div>
                <br>
-               <!-- 借书时间 -->
+               <!-- 书籍作者 -->
                <div class="ui right labeled input margin-top-10  margin-left-10">
-                  <div class="ui label">身份证号：</div>
-                  <input type="password" placeholder="请输入您的身份证号...">
+                  <div class="ui label">书籍作者：</div>
+                  <input type="text" placeholder="请输入书籍作者..." name="books_author">
                </div>
                <br>
-               <!-- 借书时间 -->
+               <!-- 书籍简介 -->
                <div class="ui right labeled input margin-top-10  margin-left-10">
-                  <div class="ui label">书籍信息：</div>
-                  <input type="password" placeholder="请输入书籍状态...">
+                  <div class="ui label">书籍简介：</div>
+                  <input type="text" placeholder="请输入书籍简介..." name="books_intro">
+               </div>
+               <br>
+               <!-- 书籍位置 -->
+               <div class="ui right labeled input margin-top-10  margin-left-10">
+                  <div class="ui label">书籍位置：</div>
+                  <input type="text" placeholder="请输入书籍位置..." name="books_position">
+               </div>
+               <br>
+               <!-- 书籍状态 -->
+               <div class="ui right labeled input margin-top-10  margin-left-10">
+                  <div class="ui label">书籍状态：</div>
+                  <input type="text" placeholder="请输入书籍状态..." name="books_status">
+               </div>
+               <br>
+               <!-- 书籍类型 -->
+               <div class="ui right labeled input margin-top-10  margin-left-10">
+                  <div class="ui label">书籍类型：</div>
+                  <input type="text" placeholder="请输入书籍类型..." name="books_type">
                </div>
                <br>
             </div>
          </div>
 
-         <button class="ui primary button margin-top-10 margin-left-20 margin-bottom-20">
-            确认还书
+         <button class="ui primary button margin-top-10 margin-left-20 margin-bottom-20" type="submit">
+            确认添加
          </button>
          <button class="ui  button margin-top-10 margin-left-20 margin-bottom-20">
             返回
@@ -63,14 +81,3 @@
       </div>
    </div>
 </form>
-
-<div class="ui grid">
-
-   <form action="system" method="post" enctype="multipart/form-data">
-      <%--    判断用户行为，告诉servlet这里要注册  --%>
-      <input type="hidden" name="actionName" value="addbook">
-      名称:<input type="text" name="uname"><br>
-      文件:<input type="file" name="myfile"><br>
-      <input type="submit" value="上传">
-   </form>
-</div>

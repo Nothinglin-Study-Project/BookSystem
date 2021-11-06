@@ -77,7 +77,7 @@
         <%--系统管理员导航菜单--%>
         <c:if test="${WhoIsYou == 'systemmanage'}">
             <div class="item"><a href="system?actionName=addbookpage">添加书籍</a></div>
-            <div class="item"><a href="#">图书管理员列表</a></div>
+            <div class="item"><a href="#">读者管理</a></div>
         </c:if>
 
         <div class="right menu borderless">
