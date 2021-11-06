@@ -76,7 +76,7 @@
 
         <%--系统管理员导航菜单--%>
         <c:if test="${WhoIsYou == 'systemmanage'}">
-            <div class="item"><a href="#">添加书籍</a></div>
+            <div class="item"><a href="system?actionName=addbookpage">添加书籍</a></div>
             <div class="item"><a href="#">图书管理员列表</a></div>
         </c:if>
 
@@ -120,6 +120,7 @@
 <!-- semantic ui js资源 -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<jsp:include page="statics/js/uploadfileimage.jsp"></jsp:include>
 </body>
 
 </html>

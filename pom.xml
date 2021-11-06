@@ -65,12 +65,34 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>jsmartcom</groupId>
+            <artifactId>jsmartcom</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jsmartcom_zh_CN.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>BookSystem</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <configuration>
+                        <webResources>
+                            <resource>
+                                <directory>/resource/lib</directory>
+                                <targetPath>WEB-INF/lib</targetPath>
+                                <includes>
+                                    <include>**/*.jar</include>
+                                </includes>
+                            </resource>
+                        </webResources>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
